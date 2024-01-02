@@ -29,10 +29,10 @@ jobs:
           ls
           cat .github/workflows/generated.yml
 
-  call-workflow:
-    name: call-workflow
-    runs-on: ubuntu-latest
-    needs: generate-workflow
-    steps:
-      - name: "Call workflow"
-        uses: .github/workflows/generated.yml
+  #call-workflow:
+  #  name: call-workflow
+  #  runs-on: ubuntu-latest
+  #  needs: generate-workflow
+  #  steps:
+  #    - name: "Call workflow"
+  #      uses: .github/workflows/generated.yml
