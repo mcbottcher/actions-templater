@@ -10,9 +10,5 @@ jobs:
     steps:
       - name: "Echo"
         runs: |
-          {% if magic_number > 5 %}
-          echo "Hello!"
-          {% else %}
-          echo "Goodbye!"
-          {% endif %}
+          echo "Hello number {{ magic_number }}"
         shell: bash
