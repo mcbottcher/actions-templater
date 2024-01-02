@@ -1,0 +1,38 @@
+# This will template another workflow with jinja based on an input
+# This will then run the generated workflow...
+
+name: "Entrypoint"
+
+on:
+  workflow_dispatch:
+    inputs:
+      number:
+        type: number
+        description: "A number to be used in templating"
+        required: true
+
+jobs:
+  generate-workflow:
+    name: "Generate Workflow"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Generate File"
+        uses: cuchi/jinja-action@v1.2.2
+        with:
+          template: .github/workflows/template.j2
+          output_file: .github/workflows/generated.yml
+          strict: true
+          variables: |
+            magic_number=${{ inputs.number }}
+      - name: "Debug"
+        run: |
+          ls
+          cat .github/workflows/generated.yml
+
+  call-workflow:
+    name: call-workflow
+    runs-on: ubuntu-latest
+    needs: generate-workflow
+    steps:
+      - name: "Call workflow"
+        uses: .github/workflows/generated.yml
