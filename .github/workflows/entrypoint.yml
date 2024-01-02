@@ -16,6 +16,8 @@ jobs:
     name: "Generate Workflow"
     runs-on: ubuntu-latest
     steps:
+      - name: "Checkout repo"
+        uses: actions/checkout@v4
       - name: "Generate File"
         uses: cuchi/jinja2-action@v1.2.2
         with:
